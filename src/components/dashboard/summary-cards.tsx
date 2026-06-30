@@ -21,7 +21,7 @@ export function SummaryCards({ debts }: SummaryCardsProps) {
     <div className="grid grid-cols-3 gap-3">
       <div className="rounded-xl bg-ledger p-3">
         <p className="text-[10px] font-medium uppercase tracking-wider text-fade">
-          Dihutang
+          Dihutang ke saya
         </p>
         <p className="mt-1 font-mono text-lg font-semibold text-balance">
           {formatRupiah(owedToMe)}
@@ -29,7 +29,7 @@ export function SummaryCards({ debts }: SummaryCardsProps) {
       </div>
       <div className="rounded-xl bg-ledger p-3">
         <p className="text-[10px] font-medium uppercase tracking-wider text-fade">
-          Hutang
+          Saya hutang
         </p>
         <p className="mt-1 font-mono text-lg font-semibold text-debt">
           {formatRupiah(iOwe)}

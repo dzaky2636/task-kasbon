@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Modal } from "@/components/ui/modal";
+import { toast } from "@/components/ui/toast";
 import type { Debt, DebtType } from "@/lib/types/debt";
 import { useState } from "react";
 
@@ -107,6 +108,7 @@ export function DebtForm({ mode, debt, open, onClose, onSuccess }: DebtFormProps
         return;
       }
 
+      toast(mode === "edit" ? "Catatan diupdate" : "Catatan disimpan", "success");
       onSuccess();
       onClose();
     } catch {
@@ -122,30 +124,42 @@ export function DebtForm({ mode, debt, open, onClose, onSuccess }: DebtFormProps
       title={mode === "edit" ? "Edit catatan" : "Catat baru"}
     >
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="grid grid-cols-2 gap-3">
-          <button
-            type="button"
-            onClick={() => setType("owed_to_me")}
-            className={`rounded-xl border-2 px-3 py-4 text-center text-sm font-medium transition-colors ${
+        <fieldset className="grid grid-cols-2 gap-3">
+          <label
+            className={`cursor-pointer rounded-xl border-2 px-3 py-4 text-center text-sm font-medium transition-colors has-checked:border-balance has-checked:bg-balance/10 has-checked:text-balance ${
               type === "owed_to_me"
                 ? "border-balance bg-balance/10 text-balance"
                 : "border-fade/20 bg-transparent text-ink hover:bg-ledger"
             }`}
           >
+            <input
+              type="radio"
+              name="debt_type"
+              value="owed_to_me"
+              checked={type === "owed_to_me"}
+              onChange={() => setType("owed_to_me")}
+              className="sr-only"
+            />
             Saya dihutang
-          </button>
-          <button
-            type="button"
-            onClick={() => setType("i_owe")}
-            className={`rounded-xl border-2 px-3 py-4 text-center text-sm font-medium transition-colors ${
+          </label>
+          <label
+            className={`cursor-pointer rounded-xl border-2 px-3 py-4 text-center text-sm font-medium transition-colors has-checked:border-debt has-checked:bg-debt/10 has-checked:text-debt ${
               type === "i_owe"
                 ? "border-debt bg-debt/10 text-debt"
                 : "border-fade/20 bg-transparent text-ink hover:bg-ledger"
             }`}
           >
+            <input
+              type="radio"
+              name="debt_type"
+              value="i_owe"
+              checked={type === "i_owe"}
+              onChange={() => setType("i_owe")}
+              className="sr-only"
+            />
             Saya hutang
-          </button>
-        </div>
+          </label>
+        </fieldset>
 
         <Input
           label="Nama orang"

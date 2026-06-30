@@ -9,6 +9,7 @@ interface DebtListProps {
   onEdit: (debt: Debt) => void;
   onDelete: (debt: Debt) => void;
   onSettle: (debt: Debt) => void;
+  onUnsettle: (debt: Debt) => void;
   onCreate: () => void;
 }
 
@@ -17,6 +18,7 @@ export function DebtList({
   onEdit,
   onDelete,
   onSettle,
+  onUnsettle,
   onCreate,
 }: DebtListProps) {
   if (debts.length === 0) {
@@ -32,6 +34,7 @@ export function DebtList({
           onEdit={onEdit}
           onDelete={onDelete}
           onSettle={onSettle}
+          onUnsettle={onUnsettle}
         />
       ))}
     </div>

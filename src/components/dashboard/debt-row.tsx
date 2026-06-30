@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { formatRupiah } from "@/lib/utils/format-rupiah";
 import { relativeTime } from "@/lib/utils/relative-time";
-import { CheckCircle, Pencil, Trash2 } from "lucide-react";
+import { CheckCircle, Pencil, Trash2, XCircle } from "lucide-react";
 import type { Debt } from "@/lib/types/debt";
 
 interface DebtRowProps {
@@ -11,13 +11,14 @@ interface DebtRowProps {
   onEdit: (debt: Debt) => void;
   onDelete: (debt: Debt) => void;
   onSettle: (debt: Debt) => void;
+  onUnsettle: (debt: Debt) => void;
 }
 
 function typeLabel(type: Debt["type"]): string {
   return type === "owed_to_me" ? "Dihutang ke saya" : "Saya hutang";
 }
 
-export function DebtRow({ debt, onEdit, onDelete, onSettle }: DebtRowProps) {
+export function DebtRow({ debt, onEdit, onDelete, onSettle, onUnsettle }: DebtRowProps) {
   const isSettled = debt.settled_at !== null;
 
   return (
@@ -56,6 +57,17 @@ export function DebtRow({ debt, onEdit, onDelete, onSettle }: DebtRowProps) {
           >
             <CheckCircle size={14} />
             Tandai Lunas
+          </Button>
+        )}
+        {isSettled && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => onUnsettle(debt)}
+            className="h-8"
+          >
+            <XCircle size={14} />
+            Batal Lunas
           </Button>
         )}
         <Button

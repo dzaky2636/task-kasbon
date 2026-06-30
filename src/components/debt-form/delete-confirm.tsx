@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/ui/modal";
+import { toast } from "@/components/ui/toast";
 import { formatRupiah } from "@/lib/utils/format-rupiah";
 import { useState } from "react";
 import type { Debt } from "@/lib/types/debt";
@@ -35,6 +36,7 @@ export function DeleteConfirm({ debt, open, onClose, onSuccess }: DeleteConfirmP
         return;
       }
 
+      toast("Catatan dihapus", "success");
       onSuccess();
       onClose();
     } catch {
