@@ -1,4 +1,7 @@
-import { ReceiptText } from "lucide-react";
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { ReceiptText, Plus } from "lucide-react";
 
 interface EmptyStateProps {
   onCreate: () => void;
@@ -12,13 +15,10 @@ export function EmptyState({ onCreate }: EmptyStateProps) {
       <p className="mt-1 text-sm text-fade">
         Yuk catat utang piutang pertama kamu
       </p>
-      <button
-        type="button"
-        onClick={onCreate}
-        className="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-ink px-4 py-2 text-sm font-medium text-white hover:bg-ink/90"
-      >
-        + Catat baru
-      </button>
+      <Button variant="primary" size="md" onClick={onCreate}>
+        <Plus size={16} />
+        Catat baru
+      </Button>
     </div>
   );
 }

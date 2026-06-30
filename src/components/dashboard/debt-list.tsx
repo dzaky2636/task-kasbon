@@ -1,3 +1,5 @@
+"use client";
+
 import type { Debt } from "@/lib/types/debt";
 import { DebtRow } from "./debt-row";
 import { EmptyState } from "./empty-state";

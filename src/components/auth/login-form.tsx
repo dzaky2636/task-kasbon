@@ -3,22 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { createClient } from "@/lib/supabase/client";
+import { translateAuthError } from "@/lib/utils/auth-error";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-
-function translateAuthError(message: string): string {
-  const lower = message.toLowerCase();
-  if (lower.includes("invalid login credentials")) {
-    return "Email atau kata sandi salah";
-  }
-  if (lower.includes("email not confirmed")) {
-    return "Email belum dikonfirmasi, cek inbox kamu";
-  }
-  if (lower.includes("rate limit")) {
-    return "Terlalu banyak percobaan, coba lagi nanti";
-  }
-  return "Gagal masuk, coba lagi";
-}
 
 export function LoginForm() {
   const [email, setEmail] = useState("");

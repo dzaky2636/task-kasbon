@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { formatRupiah } from "@/lib/utils/format-rupiah";
 import { relativeTime } from "@/lib/utils/relative-time";
@@ -53,7 +55,7 @@ export function DebtRow({ debt, onEdit, onDelete, onSettle }: DebtRowProps) {
             className="h-8"
           >
             <CheckCircle size={14} />
-            Lunas
+            Tandai Lunas
           </Button>
         )}
         <Button

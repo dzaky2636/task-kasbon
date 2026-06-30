@@ -3,22 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { createClient } from "@/lib/supabase/client";
+import { translateAuthError } from "@/lib/utils/auth-error";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-
-function translateAuthError(message: string): string {
-  const lower = message.toLowerCase();
-  if (lower.includes("user already registered")) {
-    return "Email sudah terdaftar";
-  }
-  if (lower.includes("password")) {
-    return "Kata sandi terlalu lemah, minimal 6 karakter";
-  }
-  if (lower.includes("rate limit")) {
-    return "Terlalu banyak percobaan, coba lagi nanti";
-  }
-  return "Gagal daftar, coba lagi";
-}
 
 export function SignupForm() {
   const [email, setEmail] = useState("");
