@@ -49,6 +49,3 @@ export const updateDebtSchema = z.object({
     .optional()
     .nullable(),
 });
-
-export type CreateDebtValidation = z.infer<typeof createDebtSchema>;
-export type UpdateDebtValidation = z.infer<typeof updateDebtSchema>;

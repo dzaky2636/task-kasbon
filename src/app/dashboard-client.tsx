@@ -21,6 +21,7 @@ export function DashboardClient({ debts, error }: DashboardClientProps) {
   const [selectedDebt, setSelectedDebt] = useState<Debt | undefined>(undefined);
   const [deleteDebt, setDeleteDebt] = useState<Debt | null>(null);
   const [formKey, setFormKey] = useState(0);
+  const [settleError, setSettleError] = useState("");
 
   function handleCreate() {
     setFormMode("create");
@@ -41,6 +42,8 @@ export function DashboardClient({ debts, error }: DashboardClientProps) {
   }
 
   async function handleSettle(debt: Debt) {
+    setSettleError("");
+
     try {
       const response = await fetch(`/api/debts/${debt.id}`, {
         method: "PATCH",
@@ -50,9 +53,11 @@ export function DashboardClient({ debts, error }: DashboardClientProps) {
 
       if (response.ok) {
         router.refresh();
+      } else {
+        setSettleError("Gagal tandai lunas, coba lagi");
       }
     } catch {
-      // Silent fail — UI could show toast here
+      setSettleError("Gagal tandai lunas, coba lagi");
     }
   }
 
@@ -89,6 +94,12 @@ export function DashboardClient({ debts, error }: DashboardClientProps) {
           Catat baru
         </Button>
       </div>
+
+      {settleError && (
+        <p className="mb-3 rounded-lg bg-debt/10 px-4 py-2 text-sm text-debt">
+          {settleError}
+        </p>
+      )}
 
       <DebtList
         debts={debts}

@@ -13,22 +13,5 @@ export interface Debt {
   updated_at: string;
 }
 
-export interface CreateDebtInput {
-  type: DebtType;
-  counterpart_name: string;
-  amount: number;
-  note?: string;
-  due_date?: string;
-}
-
-export interface UpdateDebtInput {
-  type?: DebtType;
-  counterpart_name?: string;
-  amount?: number;
-  note?: string;
-  due_date?: string;
-  settled_at?: string | null;
-}
-
 export type DebtTypeFilter = "all" | "owed_to_me" | "i_owe";
 export type DebtStatusFilter = "all" | "unsettled" | "settled";
