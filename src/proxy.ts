@@ -24,20 +24,26 @@ export async function proxy(request: NextRequest) {
     },
   );
 
-  const { error } = await supabase.auth.getClaims();
+  let isAuthenticated = false;
+
+  try {
+    const { data } = await supabase.auth.getUser();
+    isAuthenticated = data.user !== null;
+  } catch {
+    isAuthenticated = false;
+  }
 
   const isAuthPage =
     request.nextUrl.pathname.startsWith("/login") ||
-    request.nextUrl.pathname.startsWith("/signup") ||
-    request.nextUrl.pathname.startsWith("/auth");
+    request.nextUrl.pathname.startsWith("/signup");
 
-  if (!isAuthPage && error) {
+  if (!isAuthPage && !isAuthenticated) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }
 
-  if (isAuthPage && !error) {
+  if (isAuthPage && isAuthenticated) {
     const url = request.nextUrl.clone();
     url.pathname = "/";
     return NextResponse.redirect(url);
