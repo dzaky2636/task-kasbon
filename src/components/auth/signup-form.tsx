@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { createClient } from "@/lib/supabase/client";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 function translateAuthError(message: string): string {
@@ -25,6 +26,7 @@ export function SignupForm() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -32,7 +34,7 @@ export function SignupForm() {
     setError("");
 
     const supabase = createClient();
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -43,6 +45,12 @@ export function SignupForm() {
     if (error) {
       setError(translateAuthError(error.message));
       setLoading(false);
+      return;
+    }
+
+    if (data.session) {
+      router.push("/");
+      router.refresh();
       return;
     }
 
