@@ -3,13 +3,14 @@
 import { BarChart } from "@/components/dashboard/bar-chart";
 import { DebtList } from "@/components/dashboard/debt-list";
 import { Button } from "@/components/ui/button";
+import { SearchInput } from "@/components/ui/search-input";
 import { Select } from "@/components/ui/select";
 import { DebtForm } from "@/components/debt-form/debt-form";
 import { DeleteConfirm } from "@/components/debt-form/delete-confirm";
 import { toast, ToastContainer } from "@/components/ui/toast";
 import { formatRupiah } from "@/lib/utils/format-rupiah";
 import type { Debt } from "@/lib/types/debt";
-import { ChevronDown, ChevronUp, Layers, Plus, Search } from "lucide-react";
+import { ChevronDown, ChevronUp, Layers, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
@@ -191,32 +192,30 @@ export function DashboardClient({ debts, error }: DashboardClientProps) {
 
       <BarChart debts={debts} />
 
-      <div className="my-4 flex items-center gap-2">
-        <div className="relative flex-1 min-w-0">
-          <Search size={20} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-fade" />
-          <input
-            type="text"
-            placeholder="Cari nama..."
-            value={searchQuery}
-            onChange={(event) => setSearchQuery(event.target.value)}
-            className="w-full rounded-lg border border-fade/30 bg-paper py-3 pl-11 pr-3 text-base leading-normal text-ink placeholder:text-fade/60 focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/20 transition-colors"
-          />
-        </div>
+      <div className="my-4 flex items-center gap-3">
+        <SearchInput
+          placeholder="Cari nama..."
+          value={searchQuery}
+          onChange={(event) => setSearchQuery(event.target.value)}
+          className="min-w-0 flex-1"
+        />
         <Select
           options={sortOptions}
           value={sortBy}
           onChange={(event) => setSortBy(event.target.value)}
-          className="min-w-[130px] py-3 text-base"
+          className="h-12 min-w-[130px] py-0 text-base leading-none"
         />
         <button
           type="button"
           onClick={() => setGroupBy(!groupBy)}
-          className={`rounded-lg border p-3 text-fade transition-colors ${
-            groupBy ? "border-ink bg-ink/5 text-ink" : "border-fade/30 hover:bg-ledger"
+          className={`inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border transition-colors ${
+            groupBy
+              ? "border-ink bg-ink/5 text-ink"
+              : "border-fade/30 text-fade hover:bg-ledger"
           }`}
           aria-label="Kelompokkan"
         >
-          <Layers size={20} />
+          <Layers size={18} />
         </button>
       </div>
 
