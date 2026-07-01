@@ -193,30 +193,30 @@ export function DashboardClient({ debts, error }: DashboardClientProps) {
 
       <div className="my-4 flex items-center gap-2">
         <div className="relative flex-1 min-w-0">
-          <Search size={16} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-fade" />
+          <Search size={20} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-fade" />
           <input
             type="text"
             placeholder="Cari nama..."
             value={searchQuery}
             onChange={(event) => setSearchQuery(event.target.value)}
-            className="w-full rounded-lg border border-fade/30 bg-paper py-3 pl-9 pr-3 text-base text-ink placeholder:text-fade/60 focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/20 transition-colors"
+            className="w-full rounded-lg border border-fade/30 bg-paper py-3 pl-11 pr-3 text-base leading-normal text-ink placeholder:text-fade/60 focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/20 transition-colors"
           />
         </div>
         <Select
           options={sortOptions}
           value={sortBy}
           onChange={(event) => setSortBy(event.target.value)}
-          className="min-w-[130px] py-2 text-base"
+          className="min-w-[130px] py-3 text-base"
         />
         <button
           type="button"
           onClick={() => setGroupBy(!groupBy)}
-          className={`rounded-lg border p-2 text-fade transition-colors ${
+          className={`rounded-lg border p-3 text-fade transition-colors ${
             groupBy ? "border-ink bg-ink/5 text-ink" : "border-fade/30 hover:bg-ledger"
           }`}
           aria-label="Kelompokkan"
         >
-          <Layers size={16} />
+          <Layers size={20} />
         </button>
       </div>
 
