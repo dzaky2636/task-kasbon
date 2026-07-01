@@ -20,10 +20,10 @@ export function BarChart({ debts }: BarChartProps) {
 
   return (
     <div className="rounded-2xl border border-fade/10 bg-ledger/30 p-4">
-      <div className="mb-3 flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-fade">
+      <div className="mb-3 flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-fade">
         <div className="h-2 w-2 rounded-full bg-balance" />
         Dihutang ke saya
-        <span className="ml-auto font-mono text-xs text-ink">
+        <span className="ml-auto font-mono text-sm text-ink">
           {formatRupiah(owedToMe)}
         </span>
       </div>
@@ -34,10 +34,10 @@ export function BarChart({ debts }: BarChartProps) {
         />
       </div>
 
-      <div className="mt-4 flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-fade">
+      <div className="mt-4 flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-fade">
         <div className="h-2 w-2 rounded-full bg-debt" />
         Saya hutang
-        <span className="ml-auto font-mono text-xs text-ink">
+        <span className="ml-auto font-mono text-sm text-ink">
           {formatRupiah(iOwe)}
         </span>
       </div>

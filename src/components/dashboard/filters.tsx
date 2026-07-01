@@ -36,14 +36,14 @@ export function Filters() {
         options={statusOptions}
         value={searchParams.get("status") ?? "all"}
         onChange={(event) => updateParam("status", event.target.value)}
-        className="min-w-[120px] py-2 text-sm"
+        className="min-w-[130px] py-2 text-base"
       />
       <Select
         aria-label="Tipe"
         options={typeOptions}
         value={searchParams.get("type") ?? "all"}
         onChange={(event) => updateParam("type", event.target.value)}
-        className="min-w-[120px] py-2 text-sm"
+        className="min-w-[130px] py-2 text-base"
       />
     </div>
   );

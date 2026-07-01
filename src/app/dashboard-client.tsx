@@ -192,21 +192,21 @@ export function DashboardClient({ debts, error }: DashboardClientProps) {
       <BarChart debts={debts} />
 
       <div className="my-4 flex items-center gap-2">
-        <div className="relative flex-1">
-          <Search size={14} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-fade" />
+        <div className="relative flex-1 min-w-0">
+          <Search size={16} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-fade" />
           <input
             type="text"
             placeholder="Cari nama..."
             value={searchQuery}
             onChange={(event) => setSearchQuery(event.target.value)}
-            className="w-full rounded-lg border border-fade/30 bg-paper py-2 pl-9 pr-3 text-sm text-ink placeholder:text-fade/60 focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/20 transition-colors"
+            className="w-full rounded-lg border border-fade/30 bg-paper py-3 pl-9 pr-3 text-base text-ink placeholder:text-fade/60 focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/20 transition-colors"
           />
         </div>
         <Select
           options={sortOptions}
           value={sortBy}
           onChange={(event) => setSortBy(event.target.value)}
-          className="min-w-[120px] py-2 text-sm"
+          className="min-w-[130px] py-2 text-base"
         />
         <button
           type="button"
@@ -251,7 +251,7 @@ export function DashboardClient({ debts, error }: DashboardClientProps) {
                 >
                   <div>
                     <p className="font-semibold text-ink">{group.name}</p>
-                    <p className="text-xs text-fade">
+                    <p className="text-sm text-fade">
                       {group.items.length} entry
                       {unsettledCount > 0 && (
                         <span className="ml-1">
