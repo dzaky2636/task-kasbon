@@ -19,28 +19,28 @@ export function SummaryCards({ debts }: SummaryCardsProps) {
 
   return (
     <div className="grid grid-cols-3 gap-3">
-      <div className="rounded-xl bg-ledger p-3">
+      <div className="min-w-0 rounded-xl bg-ledger p-3">
         <p className="text-xs font-medium uppercase tracking-wider text-fade">
           Dihutang ke saya
         </p>
-        <p className="mt-1 font-mono text-xl font-semibold text-balance">
+        <p className="mt-1 truncate font-mono text-base font-semibold text-balance">
           {formatRupiah(owedToMe)}
         </p>
       </div>
-      <div className="rounded-xl bg-ledger p-3">
+      <div className="min-w-0 rounded-xl bg-ledger p-3">
         <p className="text-xs font-medium uppercase tracking-wider text-fade">
           Saya hutang
         </p>
-        <p className="mt-1 font-mono text-xl font-semibold text-debt">
+        <p className="mt-1 truncate font-mono text-base font-semibold text-debt">
           {formatRupiah(iOwe)}
         </p>
       </div>
-      <div className="rounded-xl bg-ledger p-3">
+      <div className="min-w-0 rounded-xl bg-ledger p-3">
         <p className="text-xs font-medium uppercase tracking-wider text-fade">
           Net
         </p>
         <p
-          className={`mt-1 font-mono text-xl font-semibold ${
+          className={`mt-1 truncate font-mono text-base font-semibold ${
             isPositive ? "text-balance" : "text-debt"
           }`}
         >

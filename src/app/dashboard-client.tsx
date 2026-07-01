@@ -57,16 +57,12 @@ export function DashboardClient({ debts, error }: DashboardClientProps) {
     }
 
     return result.sort((a, b) => {
-      if (sortBy === "date-asc") {
-        return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
-      }
-      if (sortBy === "amount-desc") {
-        return b.amount - a.amount;
-      }
-      if (sortBy === "amount-asc") {
-        return a.amount - b.amount;
-      }
-      return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+      const aTime = new Date(a.due_date ?? a.created_at).getTime();
+      const bTime = new Date(b.due_date ?? b.created_at).getTime();
+      if (sortBy === "date-asc") return aTime - bTime;
+      if (sortBy === "amount-desc") return b.amount - a.amount;
+      if (sortBy === "amount-asc") return a.amount - b.amount;
+      return bTime - aTime;
     });
   }, [debts, debouncedQuery, sortBy]);
 

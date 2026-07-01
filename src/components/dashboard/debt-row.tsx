@@ -29,7 +29,7 @@ export function DebtRow({ debt, onEdit, onDelete, onSettle, onUnsettle }: DebtRo
             {debt.counterpart_name}
           </p>
           <p className="mt-0.5 text-xs text-fade">
-            {typeLabel(debt.type)} · {relativeTime(debt.created_at)}
+            {typeLabel(debt.type)} · {relativeTime(debt.due_date ?? debt.created_at)}
           </p>
         </div>
         <div className="text-right">

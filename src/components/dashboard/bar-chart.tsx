@@ -34,7 +34,7 @@ export function BarChart({ debts }: BarChartProps) {
         />
       </div>
 
-      <div className="mt-4 flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-fade">
+      <div className="mt-4 mb-3 flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-fade">
         <div className="h-2 w-2 rounded-full bg-debt" />
         Saya hutang
         <span className="ml-auto font-mono text-sm text-ink">
